@@ -1,3 +1,8 @@
+---
+name: when-not-to-use
+description: Scenarios where TraceMem should not be used.
+---
+
 # Skill: TraceMem When NOT to Use
 
 ## Purpose

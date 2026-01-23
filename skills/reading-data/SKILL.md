@@ -1,3 +1,8 @@
+---
+name: reading-data
+description: Instructions for reading data from TraceMem memory.
+---
+
 # Skill: TraceMem Reading Data (Data Products)
 
 ## Purpose

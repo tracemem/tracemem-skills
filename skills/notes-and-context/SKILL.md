@@ -1,3 +1,8 @@
+---
+name: notes-and-context
+description: Managing context and notes within the memory system.
+---
+
 # Skill: TraceMem Notes and Context
 
 ## Purpose

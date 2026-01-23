@@ -1,3 +1,8 @@
+---
+name: writing-data
+description: Instructions for writing and efficiently storing data in TraceMem.
+---
+
 # Skill: TraceMem Writing Data (Governed Writes)
 
 ## Purpose

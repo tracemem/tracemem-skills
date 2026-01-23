@@ -1,3 +1,8 @@
+---
+name: approvals
+description: Guidelines for seeking user approval for sensitive actions.
+---
+
 # Skill: TraceMem Approvals and Human-in-the-Loop
 
 ## Purpose

@@ -1,3 +1,8 @@
+---
+name: intent-and-automation
+description: Handling user intent and automating memory tasks.
+---
+
 # Skill: TraceMem Intent and Automation Modes
 
 ## Purpose

@@ -1,3 +1,8 @@
+---
+name: traces-and-audit
+description: Auditing memory traces and debugging.
+---
+
 # Skill: TraceMem Traces and Audit
 
 ## Purpose

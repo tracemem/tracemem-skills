@@ -1,3 +1,8 @@
+---
+name: overview
+description: Overview of TraceMem core features, rules, and best practices.
+---
+
 # Skill: TraceMem Overview and Mental Model
 
 ## Purpose

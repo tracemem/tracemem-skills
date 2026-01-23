@@ -1,3 +1,8 @@
+---
+name: safety-and-failure-modes
+description: Understanding safety constraints and handling failures.
+---
+
 # Skill: TraceMem Safety and Failure Modes
 
 ## Purpose

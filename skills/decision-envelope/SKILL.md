@@ -1,3 +1,8 @@
+---
+name: decision-envelope
+description: Using the decision envelope pattern for structured thinking.
+---
+
 # Skill: TraceMem Decision Envelopes
 
 ## Purpose
