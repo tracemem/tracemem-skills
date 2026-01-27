@@ -19,6 +19,7 @@ This skill explains how to modify data (insert, update, delete) within TraceMem'
 ## Core Rules
 - **Verify Policy First**: Before writing, it is best practice to call `decision_evaluate` to check if your proposed action is allowed.
 - **One Operation Per Product**: Use `_insert`, `_update`, or `_delete` products appropriately. DO NOT try to `insert` on an `update` product.
+- **Flat vs Nested**: You can use a flat structure (operation + fields) for function-like products (e.g. `create_incident`) or nested `records` for batch table operations.
 - **Governance**: Writes are the primary target for human approvals. Be prepared for a write to be blocked.
 - **Purpose**: Like reads, writes require a valid `purpose`.
 
@@ -33,15 +34,28 @@ This skill explains how to modify data (insert, update, delete) within TraceMem'
    - `purpose`: Valid purpose.
    - `mutation`:
      - `operation`: one of `insert`, `update`, `delete`.
-     - `records`: Array of objects to write.
+     - *Either* fields at the top level (for flat writes) *OR* `records` array (for batch writes).
    
-   *Example*:
+   *Example 1 (Batch/Table Write)*:
    ```json
    {
      "product": "orders_insert",
      "mutation": {
        "operation": "insert",
        "records": [{"user_id": 5, "item": "sku-123"}]
+     }
+   }
+   ```
+
+   *Example 2 (Flat/Function Write - e.g. for incidents)*:
+   ```json
+   {
+     "product": "create_incident_v1",
+     "mutation": {
+       "operation": "insert",
+       "customer_id": "1001",
+       "title": "System Down",
+       "severity": "high"
      }
    }
    ```
