@@ -32,33 +32,67 @@ This skill explains how to modify data (insert, update, delete) within TraceMem'
    Call `decision_write` with:
    - `product`: The write-capable data product.
    - `purpose`: Valid purpose.
-   - `mutation`:
-     - `operation`: one of `insert`, `update`, `delete`.
-     - *Either* fields at the top level (for flat writes) *OR* `records` array (for batch writes).
+   - `operation`: one of `insert`, `update`, `delete` (top-level parameter).
+   - `keys` (NEW, optional): For update/delete, explicitly specify which fields are keys (recommended).
+   - `mutation`: Contains the data to write.
+     - For batch writes: use `records` array.
+     - For single record: can use `data` object (insert only) or `records` with one element.
+     - For single update/delete with keys object: use `fields` object.
    
    *Example 1 (Batch/Table Write)*:
    ```json
    {
      "product": "orders_insert",
+     "operation": "insert",
      "mutation": {
-       "operation": "insert",
        "records": [{"user_id": 5, "item": "sku-123"}]
      }
    }
    ```
 
-   *Example 2 (Flat/Function Write - e.g. for incidents)*:
+   *Example 2 (Single Record Insert)*:
    ```json
    {
      "product": "create_incident_v1",
+     "operation": "insert",
      "mutation": {
-       "operation": "insert",
-       "customer_id": "1001",
-       "title": "System Down",
-       "severity": "high"
+       "data": {
+         "customer_id": "1001",
+         "title": "System Down",
+         "severity": "high"
+       }
      }
    }
    ```
+
+   *Example 3 (Update - NEW Recommended Format)*:
+   ```json
+   {
+     "product": "orders_update",
+     "operation": "update",
+     "keys": {"order_id": 123},
+     "mutation": {
+       "fields": {"status": "shipped"}
+     }
+   }
+   ```
+   
+   *Example 3b (Update - Batch Format)*:
+   ```json
+   {
+     "product": "orders_update",
+     "operation": "update",
+     "keys": ["order_id"],
+     "mutation": {
+       "records": [
+         {"order_id": 123, "status": "shipped"},
+         {"order_id": 124, "status": "delivered"}
+       ]
+     }
+   }
+   ```
+
+   **Note**: For backward compatibility, `operation` can still be placed inside `mutation`, but this is deprecated. Always use the top-level `operation` parameter in new code.
 
 3. **Verify Result**:
    Check the response for `status: "executed"`. If the product has `return_created: true`, capture the returned IDs.

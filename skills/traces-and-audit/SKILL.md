@@ -31,9 +31,33 @@ This skill explains the concept of the Decision Trace as an artifact. Understand
 2. **Linking**:
    If you chain decisions (one decision triggers another workflow), reference the parent `decision_id` in the child's `metadata` or `context`.
 
+## Searching Past Decisions
+
+Use `decision_search` to query your agent's previous decisions:
+
+- **Find precedent**: Search by text, category, or tags before making a new decision
+- **Check supersession chains**: Results include `supersedes` and `superseded_by` indicators -- follow the chain to find the current active decision
+- **Filter by status**: Use `status: "committed"` to find only finalized decisions
+
+```
+Tool: decision_search
+Parameters:
+  - query: "authentication"  (free-text search)
+  - category: "architecture"  (optional)
+  - tags: ["jwt", "auth"]  (optional, all must match)
+  - status: "committed"  (optional)
+  - limit: 10  (optional, default 20, max 100)
+```
+
+This is particularly valuable for:
+- Answering "Why did we decide X?" questions
+- Avoiding duplicate or contradictory decisions
+- Building on prior context when making related decisions
+
 ## Common Mistakes
 - **Phantom Actions**: Doing side effects (like calling an external API) *without* recording it in TraceMem or via a Data Product. This creates "dark matter" — actions that have no record.
 - **Incomplete Evidence**: Reading data via a side-channel (not a Data Product) and then acting on it. The trace will show the action but not the data that justified it.
+- **Not searching before deciding**: Always check `decision_search` for existing decisions on the same topic before recording a new one.
 
 ## Safety Notes
 - **Exoneration**: A good trace protects *you* (the agent). If a policy was wrong, the trace proves you followed the policy correctly. If data was bad, the trace proves you acted on the bad data you were given.
