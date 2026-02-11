@@ -5,12 +5,15 @@ description: Recording architecture and engineering decisions with one-shot deci
 
 # Skill: Decision Recording and Search
 
+> **This is the DEFAULT tool for documenting decisions.** When a user asks you to "document a decision", "record a decision", or "make a decision record", use `decision_record` (one-shot). Do NOT use the multi-step `decision_create` / `decision_add_context` / `decision_close` workflow unless you need data product operations (reads, writes, policy evaluations, or approvals).
+
 ## Purpose
 This skill teaches how to record architectural and engineering decisions using TraceMem's one-shot recording and how to search for existing decisions to build on precedent.
 
 ## When to Use
+- When a user asks you to "document a decision" or "record a decision" -- **this is the right tool**
 - When you make an architecture decision (e.g., choosing a database, designing an API)
-- When you choose a dependency or library over alternatives
+- When you choose a dependency, library, or tool over alternatives
 - When you change a schema or data model
 - When you make an infrastructure decision
 - When you need to document an engineering tradeoff or convention

@@ -8,12 +8,17 @@ description: Using the decision envelope pattern for structured thinking.
 ## Purpose
 This skill teaches how to correctly manage the lifecycle of a Decision Envelope. The Decision Envelope is the mandatory boundary for all governed operations in TraceMem.
 
+## Use `decision_record` Instead?
+
+If you only need to **document or record a decision** (e.g., architecture choice, dependency selection, tradeoff) and do NOT need data product operations (reads, writes, policy evaluations, or approvals), use `decision_record` instead of the full envelope workflow. It handles everything in one call. See the **decision-recording** skill.
+
 ## When to Use
 - Every time you intend to perform a task that requires reading private data or affecting system state.
 - At the very beginning of a new task or workflow.
 - When an existing decision has been closed and you need to perform follow-up actions (start a new decision).
 
 ## When NOT to Use
+- When you only need to document/record a decision without data operations -- use `decision_record` instead.
 - Do not nest decisions (e.g., do not open a decision if you are already inside one, unless explicitly starting a sub-task that requires independent audit).
 - Do not open a decision for purely computational tasks (e.g., formatting text) that require no external data or side effects.
 
